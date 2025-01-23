@@ -69,8 +69,6 @@ Scan the QR code with the **Expo Go** app on your device to launch BudgetBuddy.
 ---
 
 ## 🎨 Screenshots
-Add a few screenshots here to showcase your app visually. For example:
-## Screenshots
 
 <p align="center">
   <img src="https://github.com/RahulPobari/BudgetBuddy/blob/cc94dffd508dcba5f8ced004b7d4c2708b9e6f6f/assets/images/ss2.jpg" alt="Add Expense" width="300" />
