@@ -30,19 +30,18 @@ const Profile = () => {
     {
       title: "Settings",
       icon: <Icons.GearSix size={26} color={colors.white} weight="fill" />,
-      // routeName: '/(modals)/profileModal',
+      routeName: '/(modals)/SettingsModal',
       bgColor: "#059669",
     },
     {
-      title: "About App & privacy Policy",
-      icon: <Icons.Lock size={26} color={colors.white} weight="fill" />,
-      // routeName: '/(modals)/profileModal',
+      title: "About App",
+      icon: <Icons.Code size={26} color={colors.white} weight="fill" />,
+      routeName: '/(modals)/aboutModal',
       bgColor: colors.neutral600,
     },
     {
       title: "Logout",
       icon: <Icons.Power size={26} color={colors.white} weight="fill" />,
-      // routeName: '/(modals)/profileModal',
       bgColor: "#e11d48",
     },
   ];
