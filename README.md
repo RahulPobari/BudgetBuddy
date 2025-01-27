@@ -1,4 +1,4 @@
-# BudgetBuddy – Your Ultimate Expense Tracker 💸
+# BudgetBuddy – Your Ultimate Budgeting & Spending App 💸
 
 Welcome to **BudgetBuddy**, your smart and reliable companion for managing expenses efficiently. Built using **React Native** and **Expo**, BudgetBuddy leverages **Firebase** for a seamless and secure experience. Track your expenses, set budgets, and stay financially informed – all in one app!
 
