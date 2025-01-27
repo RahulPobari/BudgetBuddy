@@ -68,7 +68,8 @@ const Profile = () => {
           {
             accountOptions.map((item, index) => {
               return (
-                <View style={styles.listItem}>
+                // key={item.title} is added extra to avoid warning
+                <View style={styles.listItem} key={item.title}>
                   <TouchableOpacity style={styles.flexRow}>
                     {/* Icon */}
                     <View style={[
