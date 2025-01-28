@@ -3,7 +3,6 @@ import React from 'react'
 import { Stack } from 'expo-router'
 import { AuthProvider } from '@/contexts/authContext';
 
-
 const StackLayout = () => {
   return (
     <Stack screenOptions={{ headerShown: false }}>
@@ -15,7 +14,6 @@ const StackLayout = () => {
     </Stack>
   )
 };
-
 export default function RootLayout() {
   return (
     <AuthProvider>
@@ -23,7 +21,5 @@ export default function RootLayout() {
     </AuthProvider>
   )
 }
-
-
 
 const styles = StyleSheet.create({});
