@@ -46,7 +46,6 @@ const Profile = () => {
     },
   ];
 
-
   const handleLogout = async () => {
     await signOut(auth);
   }
@@ -64,18 +63,18 @@ const Profile = () => {
         style: 'destructive'
       }
     ]);
-
   }
 
   const handlePress = (item: accountOptionType) => {
     if (item.title == 'Logout') {
       showLogoutAlert();
     }
-
     if(item.routeName){
       router.push(item.routeName);
     }
   }
+
+
   return (
     <ScreenWrapper>
       <View style={styles.container}>
