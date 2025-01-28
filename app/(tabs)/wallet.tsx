@@ -10,7 +10,6 @@ const Wallet = () => {
     </ScreenWrapper>
   )
 }
-
 export default Wallet
 
 const styles = StyleSheet.create({})
