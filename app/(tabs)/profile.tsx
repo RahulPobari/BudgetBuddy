@@ -75,7 +75,6 @@ const Profile = () => {
     if(item.routeName){
       router.push(item.routeName);
     }
-
   }
   return (
     <ScreenWrapper>
@@ -83,7 +82,6 @@ const Profile = () => {
         <Header title='Profile' style={{ marginVertical: spacingY._10 }} />
 
         {/* user Info */}
-
         <View style={styles.userInfo}>
           {/* Avatar */}
           <View>
@@ -96,9 +94,7 @@ const Profile = () => {
           </View>
         </View>
 
-
         {/* Account options */}
-
         <View style={styles.accountOptions}>
           {
             accountOptions.map((item, index) => {
@@ -125,7 +121,6 @@ const Profile = () => {
     </ScreenWrapper>
   )
 }
-
 export default Profile
 
 const styles = StyleSheet.create({
@@ -181,8 +176,6 @@ const styles = StyleSheet.create({
   flexRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    // justifyContent: 'flex-start',
     gap: spacingX._10
   }
-
 })

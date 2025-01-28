@@ -8,20 +8,13 @@ import { auth } from '@/config/firebase'
 import { useAuth } from '@/contexts/authContext'
 import ScreenWrapper from '@/components/ScreenWrapper'
 
-// const handleLogout = async () =>{
-//     await signOut(auth);
-// }
-
 const Home = () => {
-    const {user} = useAuth();
+    const { user } = useAuth();
 
     // console.log("user: ", user);
     return (
         <ScreenWrapper>
             <Typo>Home</Typo>
-            {/* <Button onPress={handleLogout}>
-                <Typo color={colors.black}>Logout</Typo>
-            </Button> */}
         </ScreenWrapper>
     )
 }
