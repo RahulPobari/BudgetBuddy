@@ -10,7 +10,6 @@ import ScreenWrapper from '@/components/ScreenWrapper'
 
 const Home = () => {
     const { user } = useAuth();
-
     // console.log("user: ", user);
     return (
         <ScreenWrapper>
