@@ -164,7 +164,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderRadius: radius._15,
     borderCurve: 'continuous',
-    // marginLeft: 0
   },
   listItem: {
     marginBottom: verticalScale(17),
