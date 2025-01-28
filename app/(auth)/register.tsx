@@ -27,9 +27,7 @@ const Register = () => {
         }
 
         setIsLoading(true);
-
         const res = await registerUser(emailRef.current, passwordRef.current, nameRef.current);
-
         setIsLoading(false);
 
         console.log('register result: ', res);
@@ -50,12 +48,10 @@ const Register = () => {
                 </View>
 
                 {/* Form */}
-
                 <View style={styles.form}>
                     <Typo size={16} color={colors.textLighter}>Create an account to track all you expenses</Typo>
 
                     {/* Input */}
-
                     <Input
                         placeholder='Enter your name'
                         icon={<Icons.User size={verticalScale(26)} color={colors.neutral300} weight='fill' />}
@@ -80,14 +76,12 @@ const Register = () => {
                 </View>
 
                 {/* Footer */}
-
                 <View style={styles.footer}>
                     <Typo size={15}>Already have an account?</Typo>
                     <Pressable onPress={() => router.navigate('/(auth)/login')}>
                         <Typo size={15} color={colors.primary} fontWeight={'700'}>Login</Typo>
                     </Pressable>
                 </View>
-
             </View>
         </ScreenWrapper>
     )

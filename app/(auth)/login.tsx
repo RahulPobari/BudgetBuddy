@@ -17,7 +17,7 @@ const Login = () => {
     const passwordRef = useRef("");
     const [isLoading, setIsLoading] = useState(false);
     const router = useRouter();
-    const {login: loginUser} = useAuth();
+    const { login: loginUser } = useAuth();
 
     const handleSubmit = async () => {
         if (!emailRef.current || !passwordRef.current) {
@@ -29,10 +29,9 @@ const Login = () => {
         const res = await loginUser(emailRef.current, passwordRef.current);
         setIsLoading(false);
 
-        if(!res.success){
+        if (!res.success) {
             Alert.alert('Login', res.msg);
         }
-
     }
 
     return (
@@ -46,12 +45,10 @@ const Login = () => {
                 </View>
 
                 {/* Form */}
-
                 <View style={styles.form}>
                     <Typo size={16} color={colors.textLighter}>Login now to track all your expenses</Typo>
 
                     {/* Input */}
-
                     <Input
                         placeholder='Enter your email'
                         icon={<Icons.At size={verticalScale(26)} color={colors.neutral300} weight='fill' />}
@@ -80,7 +77,6 @@ const Login = () => {
                         <Typo size={15} color={colors.primary} fontWeight={'700'}>Sign up</Typo>
                     </Pressable>
                 </View>
-
             </View>
         </ScreenWrapper>
     )
