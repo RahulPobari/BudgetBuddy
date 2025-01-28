@@ -31,12 +31,10 @@ const ProfileModal = () => {
     const [loading, setloading] = useState(false);
 
     useEffect(() => {
-
         setUserData({
             name: user?.name || '',
             image: user?.image || null,
         });
-
     }, [user]);
 
     const onSubmit = async () => {
@@ -63,7 +61,7 @@ const ProfileModal = () => {
         let result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ['images'],
             allowsEditing: true,
-            aspect: [1,1],
+            aspect: [1, 1],
             quality: 1,
         });
 

@@ -18,8 +18,8 @@ const aboutModal = () => {
 
         <Text style={styles.appDescription}>
           <Text style={styles.bold}>BudgetBuddy – Your Ultimate Budgeting & Spending App 💸{"\n"}</Text>
-          Welcome to BudgetBuddy, your smart and reliable companion for managing expenses efficiently. 
-          Built using React Native and Expo, BudgetBuddy leverages Firebase for a seamless and secure experience. 
+          Welcome to BudgetBuddy, your smart and reliable companion for managing expenses efficiently.
+          Built using React Native and Expo, BudgetBuddy leverages Firebase for a seamless and secure experience.
           Track your expenses, set budgets, and stay financially informed – all in one app!
         </Text>
 
@@ -33,12 +33,12 @@ const aboutModal = () => {
               <Text style={[styles.linkText, { color: '#fff' }]}>GitHub</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={[styles.linkItem, { backgroundColor: '#0e76a8' }]} onPress={() => openLink('https://www.linkedin.com/in/rahul-pobari-388a151ba/')}>            
+            <TouchableOpacity style={[styles.linkItem, { backgroundColor: '#0e76a8' }]} onPress={() => openLink('https://www.linkedin.com/in/rahul-pobari-388a151ba/')}>
               <Icons.LinkedinLogo size={24} color="#fff" style={styles.icon} />
               <Text style={[styles.linkText, { color: '#fff' }]}>LinkedIn</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={[styles.linkItem, { backgroundColor: '#E1306C' }]} onPress={() => openLink('https://www.instagram.com/rahul_pobari1278/')}>            
+            <TouchableOpacity style={[styles.linkItem, { backgroundColor: '#E1306C' }]} onPress={() => openLink('https://www.instagram.com/rahul_pobari1278/')}>
               <Icons.InstagramLogo size={24} color="#fff" style={styles.icon} />
               <Text style={[styles.linkText, { color: '#fff' }]}>Instagram</Text>
             </TouchableOpacity>
