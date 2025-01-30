@@ -25,12 +25,11 @@ const ImageUpload = ({
             aspect: [1, 1],
             quality: 1,
         });
-
         if (!result.canceled) {
             onSelect(result.assets[0])
         }
     }
-
+    
     return (
         <View>
             {
