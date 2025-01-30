@@ -1,11 +1,15 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import ScreenWrapper from '@/components/ScreenWrapper'
 import Typo from '@/components/Typo'
 import { colors, radius, spacingX, spacingY } from '@/constants/theme'
 import { verticalScale } from '@/utils/styling'
+import * as Icons from 'phosphor-react-native'
+import { useRouter } from 'expo-router'
 
 const Wallet = () => {
+
+  const router = useRouter();
 
 
   const getTotalBalance = () => {
@@ -13,21 +17,36 @@ const Wallet = () => {
   };
 
   return (
-    <ScreenWrapper style={{backgroundColor: colors.black}}>
+    <ScreenWrapper style={{ backgroundColor: colors.black }}>
       <View style={styles.container}>
 
         {/* Balance View  */}
         <View style={styles.balanceView}>
-          <View style={{alignItems: 'center'}}>
+          <View style={{ alignItems: 'center' }}>
             <Typo size={45} fontWeight={'500'}>
-            ₹{getTotalBalance()?.toFixed(2)}
-              </Typo>
-              <Typo size={16} color={colors.neutral300}>Total Balance</Typo>
+              ₹{getTotalBalance()?.toFixed(2)}
+            </Typo>
+            <Typo size={16} color={colors.neutral300}>Total Balance</Typo>
           </View>
         </View>
 
         {/* Wallets */}
-        
+        <View style={styles.wallets}>
+
+
+          {/* Header */}
+          <View style={styles.flexRow}>
+            <Typo size={20} fontWeight={'500'}>My Wallets</Typo>
+            <TouchableOpacity onPress={() => router.push('/(modals)/walletModal')}>
+              <Icons.PlusCircle weight='fill' color={colors.primary} size={verticalScale(33)} />
+            </TouchableOpacity>
+          </View>
+
+
+          {/* Wallet Lists  */}
+
+
+        </View>
       </View>
     </ScreenWrapper>
   )
@@ -36,7 +55,7 @@ export default Wallet
 
 const styles = StyleSheet.create({
 
-  container:{
+  container: {
     flex: 1,
     justifyContent: 'space-between'
   },
