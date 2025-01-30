@@ -32,7 +32,6 @@ const WalletModal = () => {
 
     const [loading, setloading] = useState(false);
 
-
     const onSubmit = async () => {
         let { name, image } = wallet;
         if (!name.trim() || !image) {
@@ -87,7 +86,6 @@ const WalletModal = () => {
                             onClear={() => setWallet({ ...wallet, image: null })}
                             placeholder='Upload Image'
                         />
-
                     </View>
                 </ScrollView>
             </View>
