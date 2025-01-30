@@ -68,7 +68,6 @@ const WalletModal = () => {
                 <Header title='New Wallet' leftIcon={<BackButton />} style={{ marginBottom: spacingY._10 }} />
 
                 {/* FORM */}
-
                 <ScrollView contentContainerStyle={styles.form}>
 
                     <View style={styles.inputContainer}>
