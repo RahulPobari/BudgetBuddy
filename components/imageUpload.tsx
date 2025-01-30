@@ -29,7 +29,7 @@ const ImageUpload = ({
             onSelect(result.assets[0])
         }
     }
-    
+
     return (
         <View>
             {
@@ -58,7 +58,6 @@ const ImageUpload = ({
                     </View>
                 )
             }
-
         </View>
     )
 }
@@ -90,7 +89,7 @@ const styles = StyleSheet.create({
         top: scale(6),
         right: scale(6),
         shadowColor: colors.black,
-        shadowOffset: {width: 0, height: 5},
+        shadowOffset: { width: 0, height: 5 },
         shadowOpacity: 1,
         shadowRadius: 10,
     }
