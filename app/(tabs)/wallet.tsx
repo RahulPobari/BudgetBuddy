@@ -11,7 +11,6 @@ const Wallet = () => {
 
   const router = useRouter();
 
-
   const getTotalBalance = () => {
     return Number(19382).toLocaleString('en-IN');
   };
