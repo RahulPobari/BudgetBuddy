@@ -32,7 +32,6 @@ const Wallet = () => {
         {/* Wallets */}
         <View style={styles.wallets}>
 
-
           {/* Header */}
           <View style={styles.flexRow}>
             <Typo size={20} fontWeight={'500'}>My Wallets</Typo>
@@ -41,9 +40,7 @@ const Wallet = () => {
             </TouchableOpacity>
           </View>
 
-
           {/* Wallet Lists  */}
-
 
         </View>
       </View>
