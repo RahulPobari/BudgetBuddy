@@ -9,8 +9,6 @@ import { Image } from 'expo-image'
 import { getFilePath } from '@/services/imageService'
 import * as ImagePicker from 'expo-image-picker';
 
-
-
 const ImageUpload = ({
     file = null,
     onSelect,
