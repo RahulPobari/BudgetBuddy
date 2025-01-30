@@ -10,6 +10,8 @@ export const uploadFileToCloudinary = async (
 ): Promise<ResponseType> => {
     try {
 
+        if (!file) return { success: true, data: null };
+
         if (typeof file == 'string') {
             return { success: true, data: file };
         }
@@ -48,3 +50,11 @@ export const getProfileImage = (file: any) => {
 
     return require('../assets/images/defaultAvatar.png');
 }
+export const getFilePath = (file: any) => {
+    if (file && typeof file == 'string') return file;
+    if (file && typeof file == 'object') return file.uri;
+
+    return null;
+}
+
+
