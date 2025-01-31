@@ -26,9 +26,12 @@ const Wallet = () => {
 
 
 
-  const getTotalBalance = () => {
-    return Number(19382).toLocaleString('en-IN');
-  };
+  const getTotalBalance = () =>
+    wallets.reduce((total, item) => {
+      total = total + (item.amount || 0);
+      return total;
+    }, 0);
+
 
   return (
     <ScreenWrapper style={{ backgroundColor: colors.black }}>
@@ -38,7 +41,7 @@ const Wallet = () => {
         <View style={styles.balanceView}>
           <View style={{ alignItems: 'center' }}>
             <Typo size={45} fontWeight={'500'}>
-              ₹{getTotalBalance()}
+              ₹{getTotalBalance().toLocaleString('en-IN')}
             </Typo>
             <Typo size={16} color={colors.neutral300}>Total Balance</Typo>
           </View>
