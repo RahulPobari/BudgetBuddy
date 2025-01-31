@@ -6,6 +6,9 @@ import { Router } from 'expo-router'
 import { verticalScale } from '@/utils/styling'
 import { colors, radius, spacingX } from '@/constants/theme'
 import { Image } from 'expo-image'
+import * as Icons from 'phosphor-react-native'
+import Animated, { FadeInDown } from 'react-native-reanimated'
+
 
 const WalletListItem = ({
     item,
@@ -17,7 +20,7 @@ const WalletListItem = ({
     router: Router
 }) => {
     return (
-        <View>
+        <Animated.View entering={FadeInDown.delay(index * 200).springify().damping(13)}>
             <TouchableOpacity style={styles.container}>
                 <View style={styles.imageContainer}>
                     <Image
@@ -35,8 +38,13 @@ const WalletListItem = ({
                     </Typo>
                 </View>
 
+                <Icons.CaretRight
+                    size={verticalScale(20)}
+                    weight='bold'
+                    color={colors.white}
+                />
             </TouchableOpacity>
-        </View>
+        </Animated.View>
     )
 }
 
