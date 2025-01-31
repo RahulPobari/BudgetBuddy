@@ -5,6 +5,7 @@ import { WalletType } from '@/types'
 import { Router } from 'expo-router'
 import { verticalScale } from '@/utils/styling'
 import { colors, radius, spacingX } from '@/constants/theme'
+import { Image } from 'expo-image'
 
 const WalletListItem = ({
     item,
@@ -15,13 +16,28 @@ const WalletListItem = ({
     index: number,
     router: Router
 }) => {
-  return (
-    <View>
-        <TouchableOpacity>
+    return (
+        <View>
+            <TouchableOpacity style={styles.container}>
+                <View style={styles.imageContainer}>
+                    <Image
+                        style={{ flex: 1 }}
+                        source={item?.image}
+                        contentFit='cover'
+                        transition={100}
+                    />
+                </View>
 
-        </TouchableOpacity>
-    </View>
-  )
+                <View style={styles.nameContainer}>
+                    <Typo size={16}>{item?.name}</Typo>
+                    <Typo size={14} color={colors.neutral400}>
+                        ₹{item?.amount?.toLocaleString('en-IN')}
+                    </Typo>
+                </View>
+
+            </TouchableOpacity>
+        </View>
+    )
 }
 
 export default WalletListItem
