@@ -81,7 +81,7 @@ export const expenseCategories: ExpenseCategoriesType = {
 export const incomeCategory: CategoryType = {
   label: "Income",
   value: "income",
-  icon: Icons.CurrencyDollarSimple,
+  icon: Icons.CurrencyInr,
   bgColor: "#16a34a", // Dark
 };
 

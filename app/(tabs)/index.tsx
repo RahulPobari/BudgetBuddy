@@ -11,10 +11,13 @@ import { verticalScale } from '@/utils/styling'
 import * as Icons from 'phosphor-react-native'
 import HomeCard from '@/components/HomeCard'
 import TransactionList from '@/components/TransactionList'
+import { useRouter } from 'expo-router'
 
 
 const Home = () => {
     const { user } = useAuth();
+    const router = useRouter();
+
     return (
         <ScreenWrapper>
             <View style={styles.container}>
@@ -37,12 +40,21 @@ const Home = () => {
                     </View>
 
                     <TransactionList
-                        data={[]}
+                        data={[]} // added dummpy value by adding 1,2,3....
                         loading={false}
                         emptyListMessage='No Transactions added yet!'
                         title='Recent Transactions'
                     />
                 </ScrollView>
+
+
+                <Button style={styles.floatingButton} onPress={() => router.push('/(modals)/TransactionModal')}>
+                    <Icons.Plus
+                        color={colors.black}
+                        weight='bold'
+                        size={verticalScale(24)}
+                    />
+                </Button>
             </View>
         </ScreenWrapper>
     )

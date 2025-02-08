@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { TransactionItemProps, TransactionListType } from '@/types'
 import { colors, radius, spacingX, spacingY } from '@/constants/theme'
@@ -6,6 +6,8 @@ import { verticalScale } from '@/utils/styling'
 import Typo from './Typo'
 import { FlashList } from "@shopify/flash-list";
 import Loading from './Loading'
+import { expenseCategories } from '@/constants/data'
+import Animated, { FadeInDown } from 'react-native-reanimated'
 
 
 const TransactionList = ({
@@ -62,10 +64,42 @@ const TransactionList = ({
 const TransactionItem = ({
     item, index, handleClick
 }: TransactionItemProps) => {
-    return <View>
-        <Typo>Transcation Item</Typo>
-    </View>
-}
+
+    let category = expenseCategories['entertainment'];
+    const IconComponent = category.icon;
+    return (
+        <Animated.View entering={FadeInDown.delay(index * 100).springify().damping(14)}>
+            <TouchableOpacity style={styles.row} onPress={() => handleClick(item)}>
+                <View style={[styles.icon, { backgroundColor: category.bgColor }]}>
+                    {IconComponent && (
+                        <IconComponent
+                            size={verticalScale(25)}
+                            weight='fill'
+                            color={colors.white}
+                        />
+                    )}
+                </View>
+
+                <View style={styles.categoryDes}>
+                    <Typo size={17}>{category.label}</Typo>
+                    <Typo size={14} color={colors.neutral400} textProps={{ numberOfLines: 1 }}>
+                        {/* {item?.description} */}
+                        Paid Bill
+                    </Typo>
+                </View>
+
+                <View style={styles.amountData}>
+                    <Typo fontWeight={'500'} color={colors.primary}>
+                        + ₹1000
+                    </Typo>
+                    <Typo size={13} color={colors.neutral400}>
+                        10 feb
+                    </Typo>
+                </View>
+            </TouchableOpacity>
+        </Animated.View>
+    );
+};
 
 
 export default TransactionList
