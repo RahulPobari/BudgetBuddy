@@ -5,6 +5,7 @@ import { colors, radius, spacingX, spacingY } from '@/constants/theme'
 import { verticalScale } from '@/utils/styling'
 import Typo from './Typo'
 import { FlashList } from "@shopify/flash-list";
+import Loading from './Loading'
 
 
 const TransactionList = ({
@@ -39,11 +40,21 @@ const TransactionList = ({
 
             {
                 !loading && data.length == 0 && (
-                    <Typo size={15} color={colors.neutral400} style={{textAlign: 'center', marginTop: spacingY._15}}>
+                    <Typo size={15} color={colors.neutral400} style={{ textAlign: 'center', marginTop: spacingY._15 }}>
                         {emptyListMessage}
                     </Typo>
                 )
             }
+
+            {
+                loading && (
+                    <View style={{ top: verticalScale(100) }}>
+                        <Loading />
+                    </View>
+                )
+            }
+
+
         </View>
     );
 };
