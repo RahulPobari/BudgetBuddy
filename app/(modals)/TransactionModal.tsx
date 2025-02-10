@@ -24,9 +24,6 @@ import useFetchData from '@/hooks/useFetchData'
 import { orderBy, where } from 'firebase/firestore'
 
 const TransactionModal = () => {
-
-
-
     const { user } = useAuth();
     const router = useRouter();
 
@@ -39,7 +36,6 @@ const TransactionModal = () => {
         walletId: "",
         image: null,
     });
-
 
     const { data: wallets, error: walletError, loading: walletLoading } = useFetchData<WalletType>("wallets", [
         where("uid", "==", user?.uid),
