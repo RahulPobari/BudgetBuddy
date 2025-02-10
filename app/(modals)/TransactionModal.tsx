@@ -19,7 +19,7 @@ import * as ImagePicker from 'expo-image-picker';
 import ImageUpload from '@/components/imageUpload'
 import { createOrUpdateWallet, deleteWallet } from '@/services/walletService'
 import { Dropdown } from 'react-native-element-dropdown';
-import { transactionTypes } from '@/constants/data'
+import { expenseCategories, transactionTypes } from '@/constants/data'
 import useFetchData from '@/hooks/useFetchData'
 import { orderBy, where } from 'firebase/firestore'
 
@@ -43,11 +43,11 @@ const TransactionModal = () => {
         image: null,
     });
 
-    
-  const { data: wallets, error: walletError, loading: walletLoading } = useFetchData<WalletType>("wallets", [
-    where("uid", "==", user?.uid),
-    orderBy("created", "desc"),
-  ]);
+
+    const { data: wallets, error: walletError, loading: walletLoading } = useFetchData<WalletType>("wallets", [
+        where("uid", "==", user?.uid),
+        orderBy("created", "desc"),
+    ]);
 
     const [loading, setloading] = useState(false);
 
@@ -135,6 +135,8 @@ const TransactionModal = () => {
                 {/* FORM */}
                 <ScrollView contentContainerStyle={styles.form} showsVerticalScrollIndicator={false}>
 
+                    {/* Types */}
+
                     <View style={styles.inputContainer}>
                         <Typo color={colors.neutral200}>Type</Typo>
 
@@ -159,6 +161,8 @@ const TransactionModal = () => {
                             }}
                         />
                     </View>
+
+                    {/* Wallets */}
 
                     <View style={styles.inputContainer}>
                         <Typo color={colors.neutral200}>Wallet</Typo>
@@ -187,6 +191,39 @@ const TransactionModal = () => {
                             }}
                         />
                     </View>
+
+                    {/* Expense Categories */}
+
+                    {
+                        transaction.type === 'expense' && (
+                            <View style={styles.inputContainer}>
+                                <Typo color={colors.neutral200}>Expense Category</Typo>
+
+                                <Dropdown
+                                    style={styles.dropdownContainer}
+                                    activeColor={colors.neutral700}
+                                    placeholderStyle={styles.dropdownPlaceholder}
+                                    selectedTextStyle={styles.dropdownSelectedTex}
+                                    iconStyle={styles.dropdownIcon}
+                                    data={Object.values(expenseCategories)}
+                                    maxHeight={300}
+                                    labelField="label"
+                                    valueField="value"
+                                    itemTextStyle={styles.dropdownItemText}
+                                    itemContainerStyle={styles.dropdownItemContainer}
+                                    containerStyle={styles.dropdownListContainer}
+                                    placeholder={'Select Category'}
+                                    value={transaction.category}
+
+                                    onChange={item => {
+                                        setTransaction({ ...transaction, category: item.value || "" })
+                                    }}
+                                />
+                            </View>
+                        )
+                    }
+
+
 
 
                     <View style={styles.inputContainer}>
