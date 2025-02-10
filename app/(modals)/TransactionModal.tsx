@@ -146,7 +146,6 @@ const TransactionModal = () => {
                             itemTextStyle={styles.dropdownItemText}
                             itemContainerStyle={styles.dropdownItemContainer}
                             containerStyle={styles.dropdownListContainer}
-                            // placeholder={!isFocus ? 'Select item' : '...'}
                             value={transaction.type}
 
                             onChange={item => {
@@ -215,9 +214,6 @@ const TransactionModal = () => {
                             </View>
                         )
                     }
-
-
-
 
                     <View style={styles.inputContainer}>
                         <Typo color={colors.neutral200}>transaction Icon</Typo>
