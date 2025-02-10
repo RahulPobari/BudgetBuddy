@@ -23,9 +23,6 @@ import { expenseCategories, transactionTypes } from '@/constants/data'
 import useFetchData from '@/hooks/useFetchData'
 import { orderBy, where } from 'firebase/firestore'
 
-
-
-
 const TransactionModal = () => {
 
 
