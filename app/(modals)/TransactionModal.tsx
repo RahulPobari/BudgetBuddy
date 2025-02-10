@@ -20,6 +20,8 @@ import ImageUpload from '@/components/imageUpload'
 import { createOrUpdateWallet, deleteWallet } from '@/services/walletService'
 import { Dropdown } from 'react-native-element-dropdown';
 import { transactionTypes } from '@/constants/data'
+import useFetchData from '@/hooks/useFetchData'
+import { orderBy, where } from 'firebase/firestore'
 
 
 
@@ -28,7 +30,7 @@ const TransactionModal = () => {
 
 
 
-    const { user, updateUserData } = useAuth();
+    const { user } = useAuth();
     const router = useRouter();
 
     const [transaction, setTransaction] = useState<TransactionType>({
@@ -40,6 +42,12 @@ const TransactionModal = () => {
         walletId: "",
         image: null,
     });
+
+    
+  const { data: wallets, error: walletError, loading: walletLoading } = useFetchData<WalletType>("wallets", [
+    where("uid", "==", user?.uid),
+    orderBy("created", "desc"),
+  ]);
 
     const [loading, setloading] = useState(false);
 
@@ -149,11 +157,38 @@ const TransactionModal = () => {
                             onChange={item => {
                                 setTransaction({ ...transaction, type: item.value })
                             }}
-
                         />
-
-
                     </View>
+
+                    <View style={styles.inputContainer}>
+                        <Typo color={colors.neutral200}>Wallet</Typo>
+
+                        <Dropdown
+                            style={styles.dropdownContainer}
+                            activeColor={colors.neutral700}
+                            placeholderStyle={styles.dropdownPlaceholder}
+                            selectedTextStyle={styles.dropdownSelectedTex}
+                            iconStyle={styles.dropdownIcon}
+                            data={wallets.map((wallet) => ({
+                                label: `${wallet?.name} (₹${wallet.amount})`,
+                                value: wallet?.id,
+                            }))}
+                            maxHeight={300}
+                            labelField="label"
+                            valueField="value"
+                            itemTextStyle={styles.dropdownItemText}
+                            itemContainerStyle={styles.dropdownItemContainer}
+                            containerStyle={styles.dropdownListContainer}
+                            placeholder={'Select Wallet'}
+                            value={transaction.walletId}
+
+                            onChange={item => {
+                                setTransaction({ ...transaction, walletId: item.value || "" })
+                            }}
+                        />
+                    </View>
+
+
                     <View style={styles.inputContainer}>
                         <Typo color={colors.neutral200}>transaction Icon</Typo>
 
