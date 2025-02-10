@@ -281,6 +281,9 @@ const styles = StyleSheet.create({
     inputContainer: {
         gap: spacingY._10,
     },
+    iosDatePicker:{
+        // backgroundColor: colors.neutral500
+    },
     iosDropDown: {
         flexDirection: 'row',
         height: verticalScale(54),
