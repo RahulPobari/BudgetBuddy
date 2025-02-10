@@ -18,6 +18,9 @@ import { useLocalSearchParams, useRouter } from 'expo-router'
 import * as ImagePicker from 'expo-image-picker';
 import ImageUpload from '@/components/imageUpload'
 import { createOrUpdateWallet, deleteWallet } from '@/services/walletService'
+import { Dropdown } from 'react-native-element-dropdown';
+import { transactionTypes } from '@/constants/data'
+
 
 
 
@@ -29,13 +32,13 @@ const TransactionModal = () => {
     const router = useRouter();
 
     const [transaction, setTransaction] = useState<TransactionType>({
-       type: 'expense',
-       amount: 0,
-       description: "",
-       category: "",
-       date: new Date(),
-       walletId: "",
-       image: null,
+        type: 'expense',
+        amount: 0,
+        description: "",
+        category: "",
+        date: new Date(),
+        walletId: "",
+        image: null,
     });
 
     const [loading, setloading] = useState(false);
@@ -109,25 +112,47 @@ const TransactionModal = () => {
         ]);
     }
 
+    const [value, setValue] = useState(null);
+    const [isFocus, setIsFocus] = useState(false);
+
     return (
         <ScreenWrapper style={{ paddingTop: 10 }}>
             <View style={styles.container}>
                 <Header
-                    title={oldTransaction?.id ? "Update Wallet" : "New Wallet"}
+                    title={oldTransaction?.id ? "Update Transaction" : "New Transaction"}
                     leftIcon={<BackButton />}
                     style={{ marginBottom: spacingY._10 }}
                 />
 
                 {/* FORM */}
-                <ScrollView contentContainerStyle={styles.form}>
+                <ScrollView contentContainerStyle={styles.form} showsVerticalScrollIndicator={false}>
 
                     <View style={styles.inputContainer}>
-                        <Typo color={colors.neutral200}>Wallet Name</Typo>
-                        <Input
-                            placeholder='Salary'
-                            value={transaction.name}
-                            onChangeText={(value) => setTransaction({ ...transaction, name: value })}
+                        <Typo color={colors.neutral200}>Type</Typo>
+
+                        <Dropdown
+                            style={styles.dropdownContainer}
+                            activeColor={colors.neutral700}
+                            // placeholderStyle={styles.dropdownPlaceholder}
+                            selectedTextStyle={styles.dropdownSelectedTex}
+                            iconStyle={styles.dropdownIcon}
+                            data={transactionTypes}
+                            maxHeight={300}
+                            labelField="label"
+                            valueField="value"
+                            itemTextStyle={styles.dropdownItemText}
+                            itemContainerStyle={styles.dropdownItemContainer}
+                            containerStyle={styles.dropdownListContainer}
+                            // placeholder={!isFocus ? 'Select item' : '...'}
+                            value={transaction.type}
+
+                            onChange={item => {
+                                setTransaction({ ...transaction, type: item.value })
+                            }}
+
                         />
+
+
                     </View>
                     <View style={styles.inputContainer}>
                         <Typo color={colors.neutral200}>transaction Icon</Typo>
@@ -172,114 +197,115 @@ const TransactionModal = () => {
 export default TransactionModal
 
 const styles = StyleSheet.create({
-   container: {
-    flex: 1,
-    paddingHorizontal: spacingY._20
-   },
-   form: {
-    gap: spacingY._20,
-    paddingVertical: spacingY._15,
-    paddingBottom: spacingY._40
-   },
-   footer: {
-    alignItems: "center",
-    flexDirection: "row",
-    justifyContent: "center",
-    paddingHorizontal: spacingX._20,
-    gap: scale(12),
-    paddingTop: spacingY._15,
-    borderTopColor: colors.neutral700,
-    marginBottom: spacingY._5,
-    borderTopWidth: 1,
-   },
-   inputContainer: {
-    gap: spacingY._10,
-   },
-   iosDropDown: {
-    flexDirection: 'row',
-    height: verticalScale(54),
-    alignItems: 'center',
-    justifyContent: 'center',
-    fontSize: verticalScale(14),
-    borderWidth: 1,
-    color: colors.white,
-    borderColor: colors.neutral300,
-    borderRadius: radius._17,
-    borderCurve: 'continuous',
-    paddingHorizontal: spacingX._15
-   },
-   androidDropDown: {
-    // flexDirection: 'row',
-    height: verticalScale(54),
-    alignItems: 'center',
-    justifyContent: 'center',
-    fontSize: verticalScale(14),
-    borderWidth: 1,
-    color: colors.white,
-    borderColor: colors.neutral300,
-    borderRadius: radius._17,
-    borderCurve: 'continuous',
-    // paddingHorizontal: spacingX._15
-   },
-   flexRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: spacingX._5,
-   },
-   dateInput: {
-    flexDirection: 'row',
-    height: verticalScale(54),
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: colors.neutral300,
-    borderRadius: radius._17,
-    borderCurve: 'continuous',
-    paddingHorizontal: spacingX._15
-   },
-   datePickerButton:{
-    backgroundColor: colors.neutral700,
-    alignSelf: 'flex-end',
-    padding: spacingY._7,
-    marginRight: spacingY._7,
-    paddingHorizontal: spacingY._15,
-    borderRadius: radius._10
-   },
-   dropdownContainer: {
-    height: verticalScale(54),
-    borderWidth: 1,
-    borderColor: colors.neutral300,
-    paddingHorizontal: spacingX._15,
-    borderCurve: 'continuous'
-   },
-   dropdownItemText:{
-    color: colors.white
-   },
-   dropdownSelectedTex: {
-    color: colors.white,
-    fontSize: verticalScale(14),
-   },
-   dropdownListContainer: {
-    backgroundColor: colors.neutral900,
-    borderRadius: radius._15,
-    borderCurve: 'continuous',
-    paddingVertical: spacingY._7,
-    top: 5,
-    borderColor: colors.neutral500,
-    shadowColor: colors.black,
-    shadowOffset: { width: 0, height: 5},
-    shadowOpacity: 1,
-    shadowRadius: 15,
-    elevation: 5,
-   },
-   dropdownPlaceholder: {
-    color: colors.white
-   },
-   dropdownItemContainer: {
-    borderRadius: radius._15,
-    marginHorizontal: spacingX._7,
-   },
-   dropdownIcon: {
-    height: verticalScale(30),
-    tintColor: colors.neutral300,
-   },
+    container: {
+        flex: 1,
+        paddingHorizontal: spacingY._20
+    },
+    form: {
+        gap: spacingY._20,
+        paddingVertical: spacingY._15,
+        paddingBottom: spacingY._40
+    },
+    footer: {
+        alignItems: "center",
+        flexDirection: "row",
+        justifyContent: "center",
+        paddingHorizontal: spacingX._20,
+        gap: scale(12),
+        paddingTop: spacingY._15,
+        borderTopColor: colors.neutral700,
+        marginBottom: spacingY._5,
+        borderTopWidth: 1,
+    },
+    inputContainer: {
+        gap: spacingY._10,
+    },
+    iosDropDown: {
+        flexDirection: 'row',
+        height: verticalScale(54),
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontSize: verticalScale(14),
+        borderWidth: 1,
+        color: colors.white,
+        borderColor: colors.neutral300,
+        borderRadius: radius._17,
+        borderCurve: 'continuous',
+        paddingHorizontal: spacingX._15
+    },
+    androidDropDown: {
+        // flexDirection: 'row',
+        height: verticalScale(54),
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontSize: verticalScale(14),
+        borderWidth: 1,
+        color: colors.white,
+        borderColor: colors.neutral300,
+        borderRadius: radius._17,
+        borderCurve: 'continuous',
+        // paddingHorizontal: spacingX._15
+    },
+    flexRow: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: spacingX._5,
+    },
+    dateInput: {
+        flexDirection: 'row',
+        height: verticalScale(54),
+        alignItems: 'center',
+        borderWidth: 1,
+        borderColor: colors.neutral300,
+        borderRadius: radius._17,
+        borderCurve: 'continuous',
+        paddingHorizontal: spacingX._15
+    },
+    datePickerButton: {
+        backgroundColor: colors.neutral700,
+        alignSelf: 'flex-end',
+        padding: spacingY._7,
+        marginRight: spacingY._7,
+        paddingHorizontal: spacingY._15,
+        borderRadius: radius._10
+    },
+    dropdownContainer: {
+        height: verticalScale(54),
+        borderWidth: 1,
+        borderColor: colors.neutral300,
+        paddingHorizontal: spacingX._15,
+        borderRadius: radius._15,
+        borderCurve: 'continuous'
+    },
+    dropdownItemText: {
+        color: colors.white
+    },
+    dropdownSelectedTex: {
+        color: colors.white,
+        fontSize: verticalScale(14),
+    },
+    dropdownListContainer: {
+        backgroundColor: colors.neutral900,
+        borderRadius: radius._15,
+        borderCurve: 'continuous',
+        paddingVertical: spacingY._7,
+        top: 5,
+        borderColor: colors.neutral500,
+        shadowColor: colors.black,
+        shadowOffset: { width: 0, height: 5 },
+        shadowOpacity: 1,
+        shadowRadius: 15,
+        elevation: 5,
+    },
+    dropdownPlaceholder: {
+        color: colors.white
+    },
+    dropdownItemContainer: {
+        borderRadius: radius._15,
+        marginHorizontal: spacingX._7,
+    },
+    dropdownIcon: {
+        height: verticalScale(30),
+        tintColor: colors.neutral300,
+    },
 })
