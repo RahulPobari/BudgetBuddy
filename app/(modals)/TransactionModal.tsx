@@ -1,4 +1,4 @@
-import { Alert, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Alert, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { colors, radius, spacingX, spacingY } from '@/constants/theme'
 import { scale, verticalScale } from '@/utils/styling'
@@ -46,8 +46,27 @@ const TransactionModal = () => {
 
     const oldTransaction: { name: string, image: string, id: string } = useLocalSearchParams();
 
+    const [manualDate, setManualDate] = useState(
+        (transaction.date as Date).toLocaleDateString('en-US')
+    );
+
+    const handleManualDateChange = (text: any) => {
+        setManualDate(text);
+        const dateParts = text.split('/');
+        if (dateParts.length === 3) {
+            const [month, day, year] = dateParts.map(Number);
+            if (!isNaN(month) && !isNaN(day) && !isNaN(year)) {
+                const newDate = new Date(year, month - 1, day);
+                if (!isNaN(newDate.getTime())) {
+                    setTransaction({ ...transaction, date: newDate });
+                }
+            }
+        }
+    };
+
+
     // useEffect(() => {
-    //     if (oldTransaction?.id) {
+    //     if (oldTransaction?.id) {    
     //         setTransaction({
     //             name: oldTransaction?.name,
     //             image: oldTransaction?.image
@@ -212,8 +231,22 @@ const TransactionModal = () => {
                                     }}
                                 />
                             </View>
+
                         )
                     }
+
+                    <View style={styles.inputContainer}>
+                        <Typo color={colors.neutral200}>Date</Typo>
+                        <TextInput
+                            style={styles.dateInput}
+                            value={manualDate}
+                            onChangeText={handleManualDateChange}
+                            keyboardType='numeric'
+                            placeholder='MM/DD/YYYY'
+                            maxLength={10}
+                            placeholderTextColor={colors.white}
+                        />
+                    </View>
 
                     <View style={styles.inputContainer}>
                         <Typo color={colors.neutral200}>transaction Icon</Typo>
@@ -323,7 +356,9 @@ const styles = StyleSheet.create({
         borderColor: colors.neutral300,
         borderRadius: radius._17,
         borderCurve: 'continuous',
-        paddingHorizontal: spacingX._15
+        paddingHorizontal: spacingX._15,
+        color: colors.white,
+        
     },
     datePickerButton: {
         backgroundColor: colors.neutral700,
